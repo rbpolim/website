@@ -28,7 +28,7 @@ export default function ShottingPage() {
               fill
               src={photo.src}
               alt={photo.alt}
-              className="w-full h-full object-cover"
+              className="object-cover"
             />
           </div>
         ))}

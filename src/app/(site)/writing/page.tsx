@@ -1,6 +1,8 @@
 import { Post } from "@/components/post";
 import { Heading } from "@/components/heading";
 
+import { allBlogs } from "contentlayer/generated";
+
 const posts = [
   {
     title: "How to create a design system",
@@ -36,6 +38,8 @@ const posts = [
 ];
 
 export default function WritingPage() {
+  console.log(allBlogs);
+
   return (
     <section>
       <Heading title="writing" description="Brain dumps. Thoughts. Ideas." />
