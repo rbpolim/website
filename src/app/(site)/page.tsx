@@ -22,10 +22,7 @@ export default function Home() {
       <div>
         <Heading
           title="about me"
-          description="I'm a Frontend developer with a real love for crafting digital
-        experiences. Professionally, I've been immersed in web and mobile
-        development since 2020, diving deep into technologies like Typescript,
-        React.js, Next.js, React Native, and Node.js."
+          description="I’m a full-stack developer based in São Paulo with a background in UI development. I’m passionate about frontend technologies, backend solutions, and enhancing the developer experience. Beyond tech, I have a keen interest in product design, technology, film, and craft beer."
         />
       </div>
       <div>
