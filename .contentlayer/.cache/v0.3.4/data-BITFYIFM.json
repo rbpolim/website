@@ -1,0 +1,44 @@
+{
+  "cacheItemsMap": {
+    "blog-one/index.mdx": {
+      "document": {
+        "title": "First post",
+        "publishedAt": "2023-07-31T00:00:00.000Z",
+        "updatedAt": "2023-07-31T00:00:00.000Z",
+        "description": "This is the first post",
+        "image": {
+          "filePath": "../public/img/mari.jpeg",
+          "relativeFilePath": "../../public/img/mari.jpeg",
+          "format": "jpeg",
+          "height": 1600,
+          "width": 1200,
+          "aspectRatio": 0.75,
+          "blurhashDataUrl": "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAABD0lEQVR4nA3PXStDcQCA8f/XoKTWCrlYXJLkWmrydqUkV9bWaJnyMmMlmZ3WZuyk0Tlj1kbedsSaNFoutLMV1pakKV/BhYtn5/a5en4isGlDu5BJKBL1/z9eCndcpaIk40FOVBnhcU+xJy2SzRxyc3mE/l7mo1riPqOQTu4jik8qz1qQdCLE+qwVadmOyxfk+7dutDBCL+WJy25C1n4GLWbUs2M6TM1s2Mf4AUT1q0YiGSNfuKXT1MJATxs79nEk1wTnKeOhVikiR1Z4+yzjWXLinZ9ECc+xbRvlIORDzEyPoFdeicp+zK1NdFvaUbM5nMN97AZWETHJQUrxGtQIjjU/1w8ap7lHhnq7iG0t0AC/VK4IWO6kEwAAACt0RVh0Q3JlYXRpb24gVGltZQBTYXQsIDAzIEF1ZyAyMDI0IDE4OjQ2OjQ3IEdNVNbLM+oAAAAtdEVYdFNvZnR3YXJlAGdpdGh1Yi5jb20vbWF0bWVuL0ltYWdlU2NyaXB0IHYxLjMuMBjGn/YAAAAASUVORK5CYII="
+        },
+        "isPublished": true,
+        "author": "rbpolim",
+        "tags": [
+          "productivity",
+          "css"
+        ],
+        "body": {
+          "raw": "\n# This is h1\n\n## This is h2\n",
+          "html": "<h1>This is h1</h1>\n<h2>This is h2</h2>"
+        },
+        "_id": "blog-one/index.mdx",
+        "_raw": {
+          "sourceFilePath": "blog-one/index.mdx",
+          "sourceFileName": "index.mdx",
+          "sourceFileDir": "blog-one",
+          "contentType": "mdx",
+          "flattenedPath": "blog-one"
+        },
+        "type": "Blog",
+        "url": "/blogs/blog-one"
+      },
+      "documentHash": "1722558174035",
+      "hasWarnings": false,
+      "documentTypeName": "Blog"
+    }
+  }
+}
