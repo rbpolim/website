@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  .texture {
+    @apply fixed inset-0 min-h-screen w-screen opacity-30 translate-y-0 -z-10;
+  }
+}
+
 .link-color {
   padding: 2px 0 1px;
   background-image: linear-gradient(
