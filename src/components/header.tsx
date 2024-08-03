@@ -22,8 +22,9 @@ export function Header() {
             key={route.text}
             href={route.href}
             className={cn(
-              "text-sm leading-relaxed",
-              pathName === route.href ? "underline" : ""
+              "text-sm leading-relaxed hover:text-slate-800/70",
+              pathName === route.href &&
+                "link-color transition-colors bg-transparent"
             )}
           >
             {route.text}

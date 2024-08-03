@@ -11,7 +11,7 @@ export function Post({ post }: Props) {
   return (
     <li
       key={post.slug}
-      className="mt-10 group hover:bg-[#D0F490] transition-colors"
+      className="mt-10 group hover:bg-[#00ff0059] transition-colors duration-700"
     >
       <a
         href={`/writing/${post.slug}`}
