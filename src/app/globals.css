@@ -2,8 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  .texture {
-    @apply fixed inset-0 min-h-screen w-screen opacity-30 translate-y-0 -z-10;
-  }
+.link-color {
+  padding: 2px 0 1px;
+  background-image: linear-gradient(
+    transparent 0,
+    transparent calc(50% - 9px),
+    rgba(0, 255, 0, 0.35) calc(50% - 9px),
+    rgba(0, 255, 0, 0.35) 100%
+  );
+  transition: all 400ms ease-in-out 0s;
+  background-size: 100% 200%;
+  background-position: 0 0;
+  word-break: break-word;
+}
+
+.link-color:hover {
+  background-image: linear-gradient(
+    transparent 0,
+    transparent calc(50% - 9px),
+    rgba(0, 255, 0, 0.35) calc(50% - 9px),
+    rgba(0, 255, 0, 0.35) 100%
+  );
+  background-position: 0 100%;
 }
