@@ -22,7 +22,7 @@ export default function Home() {
       <div>
         <Heading
           title="about me"
-          description="I’m a full-stack developer based in São Paulo with a background in UI development. I’m passionate about frontend technologies, backend solutions, and enhancing the developer experience. Beyond tech, I have a keen interest in product design, technology, film, and craft beer."
+          description="I’m a software developer based in São Paulo with a background in UI development. I’m passionate about frontend technologies, backend solutions, and enhancing the developer experience. Beyond tech, I have a keen interest in product design, technology, film, and craft beer."
         />
       </div>
       <div>
