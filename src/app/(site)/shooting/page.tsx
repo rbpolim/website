@@ -22,7 +22,7 @@ async function loadPhotos(): Promise<Photo[]> {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: "photos",
-    sort: "createdAt",
+    sort: "-createdAt",
     limit: 100,
   });
 

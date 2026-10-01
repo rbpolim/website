@@ -6,6 +6,9 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    globalNotFound: true,
+  },
   images: {
     localPatterns: [{ pathname: "/api/photos/file/**" }],
     remotePatterns: [

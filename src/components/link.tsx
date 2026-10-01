@@ -8,7 +8,7 @@ export function Link({ title, href }: Props) {
     <li>
       <a
         href={href}
-        className="underline transition-colors hover:bg-[#00ff0059]"
+        className="underline hover:bg-[#00ff0059] transition-all duration-300"
       >
         {title}
       </a>
