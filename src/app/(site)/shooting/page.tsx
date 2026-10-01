@@ -4,9 +4,13 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 
 import { Heading } from "@/components/heading";
-import type { Photo } from "@/payload-types";
+import { publishedPhotos, type PublishedPhoto } from "@/data/photos";
 
 export const dynamic = "force-dynamic";
+
+function usesRemoteDatabase(url: string | undefined) {
+  return Boolean(url && !url.startsWith("file:"));
+}
 
 function formatTakenAt(value: string) {
   const [year, month, day] = value.slice(0, 10).split("-").map(Number);
@@ -18,13 +22,36 @@ function formatTakenAt(value: string) {
   });
 }
 
+async function loadPhotos(): Promise<PublishedPhoto[]> {
+  if (process.env.VERCEL && !usesRemoteDatabase(process.env.DATABASE_URL)) {
+    return publishedPhotos;
+  }
+
+  try {
+    const payload = await getPayload({ config });
+    const { docs } = await payload.find({
+      collection: "photos",
+      sort: "createdAt",
+      limit: 100,
+    });
+
+    return docs.map((photo) => ({
+      id: String(photo.id),
+      alt: photo.alt,
+      url: photo.url ?? "",
+      caption: photo.caption,
+      takenAt: photo.takenAt,
+      location: photo.location,
+      tags: photo.tags,
+    }));
+  } catch (error) {
+    console.error("Failed to load photos from Payload", error);
+    return publishedPhotos;
+  }
+}
+
 export default async function ShootingPage() {
-  const payload = await getPayload({ config });
-  const { docs } = await payload.find({
-    collection: "photos",
-    sort: "createdAt",
-    limit: 100,
-  });
+  const docs = await loadPhotos();
 
   return (
     <section>
@@ -48,7 +75,7 @@ export default async function ShootingPage() {
   );
 }
 
-function PhotoFigure({ photo }: { photo: Photo }) {
+function PhotoFigure({ photo }: { photo: PublishedPhoto }) {
   const tags = photo.tags?.filter(Boolean) ?? [];
   const meta = [
     photo.location,

@@ -40,3 +40,4 @@ payload.db-*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.neon

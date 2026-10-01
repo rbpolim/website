@@ -154,6 +154,7 @@ export interface Photo {
   takenAt?: string | null;
   location?: string | null;
   tags?: string[] | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -283,6 +284,7 @@ export interface PhotosSelect<T extends boolean = true> {
   takenAt?: T;
   location?: T;
   tags?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;

@@ -11,6 +11,12 @@ const nextConfig = {
       { pathname: "/api/photos/file/**" },
       { pathname: "/img/**" },
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+    ],
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {

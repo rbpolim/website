@@ -1,5 +1,6 @@
 import path from "path";
-import { sqliteAdapter } from "@payloadcms/db-sqlite";
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
@@ -20,12 +21,19 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(srcDir, "payload-types.ts"),
   },
-  db: sqliteAdapter({
-    client: {
-      url: process.env.DATABASE_URL || "file:./payload.db",
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL || "",
     },
-    busyTimeout: 10000,
-    wal: true,
   }),
+  plugins: [
+    vercelBlobStorage({
+      collections: {
+        photos: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      clientUploads: true,
+    }),
+  ],
   sharp,
 });
