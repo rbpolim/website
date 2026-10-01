@@ -4,13 +4,9 @@ import { getPayload } from "payload";
 import config from "@payload-config";
 
 import { Heading } from "@/components/heading";
-import { publishedPhotos, type PublishedPhoto } from "@/data/photos";
+import type { Photo } from "@/payload-types";
 
-export const dynamic = "force-dynamic";
-
-function usesRemoteDatabase(url: string | undefined) {
-  return Boolean(url && !url.startsWith("file:"));
-}
+export const revalidate = 3600;
 
 function formatTakenAt(value: string) {
   const [year, month, day] = value.slice(0, 10).split("-").map(Number);
@@ -22,32 +18,15 @@ function formatTakenAt(value: string) {
   });
 }
 
-async function loadPhotos(): Promise<PublishedPhoto[]> {
-  if (process.env.VERCEL && !usesRemoteDatabase(process.env.DATABASE_URL)) {
-    return publishedPhotos;
-  }
+async function loadPhotos(): Promise<Photo[]> {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: "photos",
+    sort: "createdAt",
+    limit: 100,
+  });
 
-  try {
-    const payload = await getPayload({ config });
-    const { docs } = await payload.find({
-      collection: "photos",
-      sort: "createdAt",
-      limit: 100,
-    });
-
-    return docs.map((photo) => ({
-      id: String(photo.id),
-      alt: photo.alt,
-      url: photo.url ?? "",
-      caption: photo.caption,
-      takenAt: photo.takenAt,
-      location: photo.location,
-      tags: photo.tags,
-    }));
-  } catch (error) {
-    console.error("Failed to load photos from Payload", error);
-    return publishedPhotos;
-  }
+  return docs;
 }
 
 export default async function ShootingPage() {
@@ -66,8 +45,8 @@ export default async function ShootingPage() {
         </p>
       ) : (
         <div className="mt-8 space-y-8">
-          {docs.map((photo) => (
-            <PhotoFigure key={photo.id} photo={photo} />
+          {docs.map((photo, index) => (
+            <PhotoFigure key={photo.id} photo={photo} priority={index === 0} />
           ))}
         </div>
       )}
@@ -75,24 +54,36 @@ export default async function ShootingPage() {
   );
 }
 
-function PhotoFigure({ photo }: { photo: PublishedPhoto }) {
+function PhotoFigure({
+  photo,
+  priority = false,
+}: {
+  photo: Photo;
+  priority?: boolean;
+}) {
   const tags = photo.tags?.filter(Boolean) ?? [];
   const meta = [
     photo.location,
     photo.takenAt ? formatTakenAt(photo.takenAt) : null,
   ].filter(Boolean);
+  const src = photo.sizes?.card?.url || photo.url;
 
-  if (!photo.url) return null;
+  if (!src) return null;
 
   return (
     <figure className="space-y-2">
-      <div className="relative aspect-video">
+      <div className="relative aspect-video bg-slate-100">
         <Image
           fill
-          src={photo.url}
+          src={src}
           alt={photo.alt}
           className="object-cover"
           sizes="(max-width: 672px) 100vw, 672px"
+          priority={priority}
+          unoptimized={Boolean(photo.sizes?.card?.url)}
+          {...(photo.blurDataURL
+            ? { placeholder: "blur" as const, blurDataURL: photo.blurDataURL }
+            : {})}
         />
       </div>
       {(photo.caption || meta.length > 0 || tags.length > 0) && (

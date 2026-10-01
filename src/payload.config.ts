@@ -29,7 +29,9 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       collections: {
-        photos: true,
+        photos: {
+          disablePayloadAccessControl: true,
+        },
       },
       token: process.env.BLOB_READ_WRITE_TOKEN,
       clientUploads: true,

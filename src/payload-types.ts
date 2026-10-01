@@ -154,6 +154,7 @@ export interface Photo {
   takenAt?: string | null;
   location?: string | null;
   tags?: string[] | null;
+  blurDataURL?: string | null;
   _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -168,6 +169,14 @@ export interface Photo {
   focalY?: number | null;
   sizes?: {
     thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -284,6 +293,7 @@ export interface PhotosSelect<T extends boolean = true> {
   takenAt?: T;
   location?: T;
   tags?: T;
+  blurDataURL?: T;
   _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -300,6 +310,16 @@ export interface PhotosSelect<T extends boolean = true> {
     | T
     | {
         thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        card?:
           | T
           | {
               url?: T;

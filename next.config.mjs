@@ -7,10 +7,7 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    localPatterns: [
-      { pathname: "/api/photos/file/**" },
-      { pathname: "/img/**" },
-    ],
+    localPatterns: [{ pathname: "/api/photos/file/**" }],
     remotePatterns: [
       {
         protocol: "https",

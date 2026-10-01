@@ -10,7 +10,7 @@ export function Header() {
 
   const routes = [
     { href: "/", text: "Home" },
-    { href: "/writing", text: "Writing" },
+    // { href: "/writing", text: "Writing" },
     { href: "/shooting", text: "Shooting" },
   ];
 
@@ -24,7 +24,7 @@ export function Header() {
             className={cn(
               "text-sm leading-relaxed hover:text-slate-800/70",
               pathName === route.href &&
-                "link-color transition-colors bg-transparent"
+                "link-color transition-colors bg-transparent",
             )}
           >
             {route.text}
