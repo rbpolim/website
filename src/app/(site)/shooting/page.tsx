@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getPayload } from "payload";
 import config from "@payload-config";
 
@@ -31,9 +32,9 @@ export default async function ShootingPage() {
       {docs.length === 0 ? (
         <p className="mt-8 text-sm text-slate-600/70">
           No photos yet. Add them in the{" "}
-          <a href="/admin" className="underline">
+          <Link href="/admin" className="underline">
             admin
-          </a>
+          </Link>
           .
         </p>
       ) : (

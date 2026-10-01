@@ -4,8 +4,8 @@ import { Heading } from "@/components/heading";
 export default function Home() {
   const links = [
     {
-      title: "twitter",
-      href: "https://twitter.com/rbpolim",
+      title: "x",
+      href: "https://x.com/rbpolim",
     },
     {
       title: "github",
