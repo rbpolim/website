@@ -3,6 +3,7 @@ import type {
   CollectionAfterChangeHook,
   CollectionAfterDeleteHook,
   CollectionConfig,
+  TextFieldSingleValidation,
 } from "payload";
 
 function revalidateProjects() {
@@ -21,6 +22,23 @@ const revalidateProjectsAfterChange: CollectionAfterChangeHook = ({ doc }) => {
 const revalidateProjectsAfterDelete: CollectionAfterDeleteHook = ({ doc }) => {
   revalidateProjects();
   return doc;
+};
+
+const validateUrl: TextFieldSingleValidation = (value) => {
+  if (typeof value !== "string" || value.length === 0) {
+    return "Enter a URL.";
+  }
+
+  try {
+    const url = new URL(value);
+    if (url.protocol !== "http:" && url.protocol !== "https:") {
+      return "Use an http or https URL.";
+    }
+  } catch {
+    return "Enter a valid URL.";
+  }
+
+  return true;
 };
 
 export const Projects: CollectionConfig = {
@@ -52,22 +70,7 @@ export const Projects: CollectionConfig = {
       type: "text",
       label: "URL",
       required: true,
-      validate: (value) => {
-        if (typeof value !== "string" || value.length === 0) {
-          return "Enter a URL.";
-        }
-
-        try {
-          const url = new URL(value);
-          if (url.protocol !== "http:" && url.protocol !== "https:") {
-            return "Use an http or https URL.";
-          }
-        } catch {
-          return "Enter a valid URL.";
-        }
-
-        return true;
-      },
+      validate: validateUrl,
     },
   ],
 };
