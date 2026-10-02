@@ -5,6 +5,7 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 
 import { Photos } from "./collections/Photos";
+import { Projects } from "./collections/Projects";
 import { Users } from "./collections/Users";
 
 const srcDir = path.resolve(process.cwd(), "src");
@@ -16,7 +17,7 @@ export default buildConfig({
       baseDir: srcDir,
     },
   },
-  collections: [Users, Photos],
+  collections: [Users, Photos, Projects],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(srcDir, "payload-types.ts"),

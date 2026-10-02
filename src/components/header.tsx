@@ -10,6 +10,7 @@ export function Header() {
 
   const routes = [
     { href: "/", text: "Home" },
+    { href: "/projects", text: "Projects" },
     // { href: "/writing", text: "Writing" },
     { href: "/shooting", text: "Shooting" },
   ];
