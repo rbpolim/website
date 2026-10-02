@@ -1,5 +1,6 @@
 import { Link } from "@/components/link";
 import { Heading } from "@/components/heading";
+import { RevealWord } from "@/components/reveal-word";
 
 export default function Home() {
   const links = [
@@ -22,7 +23,18 @@ export default function Home() {
       <div>
         <Heading
           title="about me"
-          description="I’m a software developer based in São Paulo with a background in UI development. I’m passionate about frontend technologies, backend solutions, and enhancing the developer experience. Beyond tech, I have a keen interest in product design, technology, film, and craft beer."
+          description={
+            <>
+              I’m a software developer based in São Paulo with a background in
+              UI development. I’m passionate about frontend technologies,
+              backend solutions, and enhancing the developer experience. Beyond
+              tech, I have a keen interest in{" "}
+              <RevealWord word="movies" emoji="🎬" />
+              {" & "}
+              <RevealWord word="games" emoji="🎮" /> and{" "}
+              <RevealWord word="beer" emoji="🍺" />.
+            </>
+          }
         />
       </div>
       <div>
